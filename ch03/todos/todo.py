@@ -2,7 +2,6 @@ from fastapi import APIRouter, Path, HTTPException, status
 from model import Todo, TodoItem, TodoItems
 
 todo_router = APIRouter()
-
 todo_list = []
 
 

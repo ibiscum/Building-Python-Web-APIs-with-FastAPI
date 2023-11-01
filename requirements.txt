@@ -8,6 +8,7 @@ anyio==3.7.1
     # via
     #   -r requirements.in
     #   fastapi
+    #   httpcore
     #   starlette
 asgiref==3.7.2
     # via -r requirements.in
@@ -15,18 +16,34 @@ bcrypt==4.0.1
     # via -r requirements.in
 beanie==1.23.1
     # via -r requirements.in
+certifi==2023.7.22
+    # via
+    #   httpcore
+    #   httpx
 cffi==1.16.0
+    # via
+    #   -r requirements.in
+    #   cryptography
+charset-normalizer==3.3.2
     # via -r requirements.in
 click==8.1.7
     # via
     #   -r requirements.in
     #   beanie
     #   uvicorn
+coverage==7.3.2
+    # via -r requirements.in
+cryptography==41.0.5
+    # via -r requirements.in
 dnspython==2.4.2
     # via
     #   -r requirements.in
     #   email-validator
     #   pymongo
+ecdsa==0.18.0
+    # via
+    #   -r requirements.in
+    #   python-jose
 email-validator==2.1.0.post1
     # via -r requirements.in
 fastapi==0.104.1
@@ -36,13 +53,25 @@ greenlet==3.0.1
 h11==0.14.0
     # via
     #   -r requirements.in
+    #   httpcore
     #   uvicorn
+httpcore==0.18.0
+    # via
+    #   -r requirements.in
+    #   httpx
+httpx==0.25.0
+    # via -r requirements.in
 idna==3.4
     # via
     #   -r requirements.in
     #   anyio
     #   email-validator
+    #   httpx
     #   yarl
+iniconfig==2.0.0
+    # via
+    #   -r requirements.in
+    #   pytest
 jinja2==3.1.2
     # via -r requirements.in
 lazy-model==0.2.0
@@ -59,8 +88,21 @@ multidict==6.0.4
     # via
     #   -r requirements.in
     #   yarl
+packaging==23.2
+    # via pytest
 passlib==1.7.4
     # via -r requirements.in
+pluggy==1.3.0
+    # via
+    #   -r requirements.in
+    #   pytest
+py==1.11.0
+    # via -r requirements.in
+pyasn1==0.5.0
+    # via
+    #   -r requirements.in
+    #   python-jose
+    #   rsa
 pycparser==2.21
     # via
     #   -r requirements.in
@@ -78,16 +120,36 @@ pymongo==4.5.0
     # via
     #   -r requirements.in
     #   motor
+pyparsing==3.1.1
+    # via -r requirements.in
+pytest==7.4.3
+    # via
+    #   -r requirements.in
+    #   pytest-asyncio
+pytest-asyncio==0.21.1
+    # via -r requirements.in
 python-dotenv==1.0.0
+    # via -r requirements.in
+python-jose==3.3.0
     # via -r requirements.in
 python-multipart==0.0.6
     # via -r requirements.in
-six==1.16.0
+rfc3986==2.0.0
     # via -r requirements.in
+rsa==4.9
+    # via
+    #   -r requirements.in
+    #   python-jose
+six==1.16.0
+    # via
+    #   -r requirements.in
+    #   ecdsa
 sniffio==1.3.0
     # via
     #   -r requirements.in
     #   anyio
+    #   httpcore
+    #   httpx
 sqlalchemy==1.4.50
     # via
     #   -r requirements.in
@@ -106,12 +168,13 @@ toml==0.10.2
     # via
     #   -r requirements.in
     #   beanie
+tomli==2.0.1
+    # via -r requirements.in
 typing-extensions==4.8.0
     # via
     #   -r requirements.in
     #   fastapi
     #   pydantic
-    #   pydantic-core
     #   sqlalchemy2-stubs
 uvicorn==0.23.2
     # via -r requirements.in

@@ -22,7 +22,6 @@ motor
 multidict
 passlib
 pluggy
-py
 pyasn1
 pycparser
 pydantic

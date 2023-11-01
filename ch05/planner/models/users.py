@@ -18,9 +18,4 @@ class UserSignIn(BaseModel):
     email: EmailStr
     password: str
 
-    schema_extra = {
-        "example": {
-            "email": "fastapi@packt.com",
-            "password": "strong!!!"
-        }
-    }
+    schema_extra = {"example": {"email": "fastapi@packt.com", "password": "strong!!!"}}

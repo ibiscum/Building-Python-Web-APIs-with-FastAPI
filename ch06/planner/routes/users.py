@@ -16,12 +16,10 @@ async def sign_user_up(user: User) -> dict:
     if user_exist:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail="User with email provided exists already."
+            detail="User with email provided exists already.",
         )
     await user_database.save(user)
-    return {
-        "message": "User created successfully"
-    }
+    return {"message": "User created successfully"}
 
 
 @user_router.post("/signin")
@@ -30,12 +28,10 @@ async def sign_user_in(user: UserSignIn) -> dict:
     if not user_exist:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User with email does not exist."
+            detail="User with email does not exist.",
         )
     if user_exist.password == user.password:
-        return {
-            "message": "User signed in successfully."
-        }
+        return {"message": "User signed in successfully."}
 
     raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,

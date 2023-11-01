@@ -18,7 +18,7 @@ async def mock_event() -> Event:
         image="https://linktomyimage.com/image.png",
         description="We will be discussing the contents of the FastAPI book in this event.Ensure to come with your own copy to win gifts!",
         tags=["python", "fastapi", "book", "launch"],
-        location="Google Meet"
+        location="Google Meet",
     )
 
     await Event.insert_one(new_event)
@@ -50,23 +50,16 @@ async def test_post_event(default_client: httpx.AsyncClient, access_token: str) 
         "title": "FastAPI Book Launch",
         "image": "https://linktomyimage.com/image.png",
         "description": "We will be discussing the contents of the FastAPI book in this event.Ensure to come with your own copy to win gifts!",
-        "tags": [
-            "python",
-            "fastapi",
-            "book",
-            "launch"
-        ],
+        "tags": ["python", "fastapi", "book", "launch"],
         "location": "Google Meet",
     }
 
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {access_token}",
     }
 
-    test_response = {
-        "message": "Event created successfully"
-    }
+    test_response = {"message": "Event created successfully"}
 
     response = await default_client.post("/event/new", json=payload, headers=headers)
 
@@ -85,14 +78,14 @@ async def test_get_events_count(default_client: httpx.AsyncClient) -> None:
 
 
 @pytest.mark.asyncio
-async def test_update_event(default_client: httpx.AsyncClient, mock_event: Event, access_token: str) -> None:
-    test_payload = {
-        "title": "Updated FastAPI event"
-    }
+async def test_update_event(
+    default_client: httpx.AsyncClient, mock_event: Event, access_token: str
+) -> None:
+    test_payload = {"title": "Updated FastAPI event"}
 
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {access_token}",
     }
 
     url = f"/event/{str(mock_event.id)}"
@@ -104,14 +97,14 @@ async def test_update_event(default_client: httpx.AsyncClient, mock_event: Event
 
 
 @pytest.mark.asyncio
-async def test_delete_event(default_client: httpx.AsyncClient, mock_event: Event, access_token: str) -> None:
-    test_response = {
-        "message": "Event deleted successfully."
-    }
+async def test_delete_event(
+    default_client: httpx.AsyncClient, mock_event: Event, access_token: str
+) -> None:
+    test_response = {"message": "Event deleted successfully."}
 
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {access_token}",
     }
 
     url = f"/event/{mock_event.id}"
@@ -123,7 +116,9 @@ async def test_delete_event(default_client: httpx.AsyncClient, mock_event: Event
 
 
 @pytest.mark.asyncio
-async def test_get_event_again(default_client: httpx.AsyncClient, mock_event: Event) -> None:
+async def test_get_event_again(
+    default_client: httpx.AsyncClient, mock_event: Event
+) -> None:
     url = f"/event/{str(mock_event.id)}"
     response = await default_client.get(url)
 

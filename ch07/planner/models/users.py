@@ -12,10 +12,7 @@ class User(Document):
 
     class Config:
         schema_extra = {
-            "example": {
-                "email": "fastapi@packt.com",
-                "password": "strong!!!"
-            }
+            "example": {"email": "fastapi@packt.com", "password": "strong!!!"}
         }
 
 

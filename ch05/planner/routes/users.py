@@ -31,6 +31,7 @@ async def sign_user_in(user: UserSignIn) -> dict:
 
     if users[user.email].password != user.password:
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, detail="Wrong credential passed"
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Wrong credential passed"
         )
     return {"message": "User signed in successfully"}

@@ -42,7 +42,8 @@ async def update_event(
     event = await event_database.get(id)
     if event.creator != user:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="Operation not allowed"
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Operation not allowed"
         )
     updated_event = await event_database.update(id, body)
     if not updated_event:
@@ -54,11 +55,13 @@ async def update_event(
 
 
 @event_router.delete("/{id}")
-async def delete_event(id: PydanticObjectId, user: str = Depends(authenticate)) -> dict:
+async def delete_event(id: PydanticObjectId,
+                       user: str = Depends(authenticate)) -> dict:
     event = await event_database.get(id)
     if event.creator != user:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="Operation not allowed"
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Operation not allowed"
         )
     if not event:
         raise HTTPException(

@@ -41,5 +41,6 @@ async def sign_user_in(user: OAuth2PasswordRequestForm = Depends()) -> dict:
         return {"access_token": access_token, "token_type": "Bearer"}
 
     raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid details passed."
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Invalid details passed."
     )

@@ -36,7 +36,7 @@ async def get_single_todo(
             return templates.TemplateResponse(
                 "todo.html", {"request": request, "todo": todo}
             )
-        
+
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
         detail="Todo with supplied ID doesn't exist",

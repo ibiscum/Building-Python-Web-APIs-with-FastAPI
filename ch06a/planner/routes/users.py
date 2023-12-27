@@ -1,39 +1,74 @@
-from database.connection import Database
-from fastapi import APIRouter, HTTPException, status
-from models.users import User, UserSignIn
+from fastapi import APIRouter, HTTPException, Request, status, Depends
+from fastapi.templating import Jinja2Templates
+
+from models.users import NewUser, UserSignIn
 
 user_router = APIRouter(
     tags=["User"],
 )
 
-user_database = Database(User)
+users = {}
+templates = Jinja2Templates(directory="templates/")
 
 
 @user_router.post("/signup")
-async def sign_user_up(user: User) -> dict:
-    user_exist = await User.find_one(User.email == user.email)
-
-    if user_exist:
+async def sign_user_up(
+    request: Request, data: NewUser = Depends(NewUser.as_form)
+):
+    if data.email in users:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail="User with email provided exists already.",
+            detail="User with supplied username exists"
         )
-    await user_database.save(user)
-    return {"message": "User created successfully"}
+
+    users[data.email] = data
+
+    return templates.TemplateResponse("user.html", {
+        "request": request,
+        "signed_in": True,
+    })
 
 
 @user_router.post("/signin")
-async def sign_user_in(user: UserSignIn) -> dict:
-    user_exist = await User.find_one(User.email == user.email)
-    if not user_exist:
+async def sign_user_in(
+    request: Request,
+    user: UserSignIn = Depends(UserSignIn.as_form)
+):
+    if user.email not in users:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User with email does not exist.",
+            detail="User does not exist"
         )
-    if user_exist.password == user.password:
-        return {"message": "User signed in successfully."}
 
-    raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Invalid details passed."
+    if users[user.email].password != user.password:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Wrong credential passed"
+        )
+    return templates.TemplateResponse(
+        "index.html",
+        {
+            "request": request,
+            "signed_in": True
+        }
+    )
+
+
+@user_router.get("/")
+async def render_login_page(request: Request):
+    return templates.TemplateResponse(
+        "user.html", {
+            "request": request,
+            "sign_in": True
+        }
+    )
+
+
+@user_router.get("/signup")
+async def render_signup_page(request: Request):
+    return templates.TemplateResponse(
+        "user.html", {
+            "request": request,
+            "sign_in": False
+        }
     )

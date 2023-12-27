@@ -1,11 +1,12 @@
-from beanie import Document
-
+from typing import Optional, List
 from pydantic import BaseModel, EmailStr
+from models.events import Event
 
 
-class User(Document):
+class User(BaseModel):
     email: EmailStr
     password: str
+    events: Optional[List[Event]]
 
     class Settings:
         name = "users"

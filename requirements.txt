@@ -7,7 +7,6 @@
 anyio==3.7.1
     # via
     #   -r requirements.in
-    #   fastapi
     #   httpcore
     #   starlette
 asgiref==3.7.2
@@ -48,7 +47,7 @@ ecdsa==0.18.0
     #   python-jose
 email-validator==2.1.0.post1
     # via -r requirements.in
-fastapi==0.104.1
+fastapi==0.109.1
     # via -r requirements.in
 greenlet==3.0.1
     # via sqlalchemy
@@ -161,7 +160,7 @@ sqlalchemy2-stubs==0.0.2a36
     #   sqlmodel
 sqlmodel==0.0.11
     # via -r requirements.in
-starlette==0.27.0
+starlette==0.35.1
     # via
     #   -r requirements.in
     #   fastapi

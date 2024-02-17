@@ -32,7 +32,7 @@ click==8.1.7
     #   uvicorn
 coverage==7.3.2
     # via -r requirements.in
-cryptography==41.0.6
+cryptography==42.0.2
     # via -r requirements.in
 databases==0.8.0
     # via -r requirements.in

@@ -178,5 +178,5 @@ typing-extensions==4.8.0
     #   sqlalchemy2-stubs
 uvicorn==0.23.2
     # via -r requirements.in
-yarl==1.9.2
+yarl==1.13.1
     # via -r requirements.in

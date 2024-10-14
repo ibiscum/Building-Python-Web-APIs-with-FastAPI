@@ -30,7 +30,7 @@ click==8.1.7
     #   -r requirements.in
     #   beanie
     #   uvicorn
-coverage==7.3.2
+coverage==7.6.3
     # via -r requirements.in
 cryptography==42.0.4
     # via -r requirements.in

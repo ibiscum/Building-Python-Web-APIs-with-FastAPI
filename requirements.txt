@@ -172,7 +172,7 @@ toml==0.10.2
     #   beanie
 tomli==2.0.1
     # via -r requirements.in
-typing-extensions==4.8.0
+typing-extensions==4.12.2
     # via
     #   -r requirements.in
     #   fastapi
